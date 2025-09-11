@@ -177,7 +177,8 @@ else:
     _end_default = pd.to_datetime("2024-06-10").date()
 
 # ===== App init (Dataiku safe) =====
-app = dash.get_app() if hasattr(dash, "get_app") else Dash(__name__)
+# app = dash.get_app() if hasattr(dash, "get_app") else Dash(__name__)
+app = Dash(__name__)
 
 # ===== Tokenless map style =====
 # Use OpenStreetMap tiles by default — NO access token required
@@ -225,7 +226,7 @@ app.layout = html.Div(
                     },
                 ),
                 html.Div(
-                    "Supplier Risk Dashboard",
+                    "Dashboard",
                     style={
                         "fontSize": "14px",
                         "color": "#FFFFFF",
@@ -879,4 +880,4 @@ dash.clientside_callback(
 # ===== Standalone server (uncommented) =====
 if __name__ == "__main__":
     # Tokenless by default (OpenStreetMap). To switch, set: os.environ["MAP_STYLE"] = "carto-positron" (still tokenless)
-    app.run_server(host="0.0.0.0", port=8050, debug=True)
+    app.run(host="0.0.0.0", port=8050, debug=True)
